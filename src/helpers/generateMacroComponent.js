@@ -12,7 +12,7 @@ const createDir = (dir, name) => {
     }
 };
 
-const createStyleFile = async (name, dir) => {
+const createStyleFile = (name, dir) => {
     try {
         const output = `
 #${name} {
@@ -29,7 +29,7 @@ const createStyleFile = async (name, dir) => {
     }
 };
 
-const createVisaulComponent = async (name, dir) => {
+const createVisaulComponent = (name, dir) => {
     try {
         const output = `
 //Our Importations
@@ -54,7 +54,7 @@ export default ${name};
 };
 
 
-const createContainerComponent = async (name, dir) => {
+const createContainerComponent = (name, dir) => {
     try {
         const output = `
 //Our Importations
@@ -82,7 +82,7 @@ export default ${name}Container;
     }
 };
 
-const createIndex = async (name, dir) => {
+const createIndex = (name, dir) => {
     try {
         const output = `
 export { default } from "./${name}Container.jsx";
@@ -97,19 +97,18 @@ export { default } from "./${name}Container.jsx";
     }
 };
 
-const generateMacroComponent = async (name = "", dir = "Components") => {
+const generateMacroComponent = (name = "", dir = "Components") => {
 
     if (dir === "Pages") {
         name += (dir.substring(0, dir.length - 1));
     }
 
-
-    await verifyDir(dir);
-    await createDir(dir, name);
-    await createStyleFile(name, dir);
-    await createVisaulComponent(name, dir);
-    await createContainerComponent(name, dir);
-    await createIndex(name, dir);
+    verifyDir(dir);
+    createDir(dir, name);
+    createStyleFile(name, dir);
+    createVisaulComponent(name, dir);
+    createContainerComponent(name, dir);
+    createIndex(name, dir);
 };
 
 module.exports = {
